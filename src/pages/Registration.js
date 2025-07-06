@@ -29,9 +29,8 @@ const Registration = () => {
         formData.append("password", password);
         formData.append("confirmpassword", confirmpassword);
 
-        axios.post('http://localhost/backend/login.php', formData)
-        //sawe
-
+        axios.post('http://localhost/backend/login.php',formData)
+        //kavindu
     }
 
     return (
