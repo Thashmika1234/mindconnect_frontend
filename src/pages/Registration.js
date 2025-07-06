@@ -7,11 +7,11 @@ import option_icon from '../components/assests/option.png';
 import axios from "axios";
 
 const Registration = () => {
-    const [username,setusername] = useState("");
-    const [email,setemail] = useState("");
+    const [username, setusername] = useState("");
+    const [email, setemail] = useState("");
     const [usertype, setusertype] = useState("");
-    const [password,setpassword] = useState("");
-    const [confirmpassword,setconfirmpassword] = useState("");
+    const [password, setpassword] = useState("");
+    const [confirmpassword, setconfirmpassword] = useState("");
 
 
 
@@ -24,14 +24,14 @@ const Registration = () => {
 
         var formData = new FormData();
 
-        formData.append("username",username);
-        formData.append("email",email);
-        formData.append("usertype",usertype);
-        formData.append("password",password);
-        formData.append("confirmpassword",confirmpassword);
+        formData.append("username", username);
+        formData.append("email", email);
+        formData.append("usertype", usertype);
+        formData.append("password", password);
+        formData.append("confirmpassword", confirmpassword);
 
-        axios.post('http://localhost/backend/login.php',formData)
-        //sandun pushpika
+        axios.post('http://localhost/backend/login.php', formData)
+        //thanuj gayan
     }
 
     return (
@@ -44,10 +44,10 @@ const Registration = () => {
                     <hr className="my-4 border-gray-200" />
                 </div>
 
-                
+
                 <form className="flex flex-col gap-4 sm:gap-6" onSubmit={handleSubmit}>
-                    <InputComponent icon={user_icon} placeholder="Username" inputtype="text" value={username} onChange = {setusername}/>
-                    <InputComponent icon={email_icon} placeholder="Email" inputtype="email" value={email} onChange = {setemail}/>
+                    <InputComponent icon={user_icon} placeholder="Username" inputtype="text" value={username} onChange={setusername} />
+                    <InputComponent icon={email_icon} placeholder="Email" inputtype="email" value={email} onChange={setemail} />
 
                     {/* Dropdown */}
                     <div className="relative text-gray-400">
@@ -59,7 +59,7 @@ const Registration = () => {
                         <select
                             value={usertype}
                             //onChange={handleUserTypeChange}
-                            onChange = {(e) => setusertype(e.target.value)}
+                            onChange={(e) => setusertype(e.target.value)}
                             className="w-full py-5 pl-14 pr-4 rounded-lg bg-blue-50 focus:ring-blue-500 focus:border-blue-500"
                         >
                             <option value="" disabled>Select User Type</option>
@@ -69,8 +69,8 @@ const Registration = () => {
                         </select>
                     </div>
 
-                    <InputComponent icon={password_icon} placeholder="Password" inputtype="password" value={password} onChange = {setpassword}/>
-                    <InputComponent icon={password_icon} placeholder="Confirm Password" inputtype="password" value={confirmpassword} onChange = {setconfirmpassword}/>
+                    <InputComponent icon={password_icon} placeholder="Password" inputtype="password" value={password} onChange={setpassword} />
+                    <InputComponent icon={password_icon} placeholder="Confirm Password" inputtype="password" value={confirmpassword} onChange={setconfirmpassword} />
 
                     <div className="mt-4">
                         <button
@@ -81,7 +81,7 @@ const Registration = () => {
                         </button>
                     </div>
                 </form>
-                
+
             </div>
         </div>
     );
