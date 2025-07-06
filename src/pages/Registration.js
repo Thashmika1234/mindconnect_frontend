@@ -18,8 +18,7 @@ const Registration = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        console.log(email);
-        console.log(username);
+        
 
 
         var formData = new FormData();
