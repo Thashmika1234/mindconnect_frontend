@@ -30,7 +30,7 @@ const Registration = () => {
         formData.append("confirmpassword", confirmpassword);
 
         axios.post('http://localhost/backend/login.php',formData)
-        //sandun pushpika
+        //test
     }
 
     return (
