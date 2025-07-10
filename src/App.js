@@ -19,6 +19,7 @@ function App() {
         <Route path='/account' element={<Account/>}/>
         <Route path='/regularUserAcc' element={<RegularUserAcc/>}/>
         <Route path='/posting' element={<Posting/>}/>
+        <Route path="/home" element={<HomePage />} />
       
         
         

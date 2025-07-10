@@ -1,37 +1,58 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import InputComponent from "../components/loginSignupComponents/InputComponent";
-import user_icon from '../components/assests/person-295.png';
+//import user_icon from '../components/assests/person-295.png';
 import email_icon from '../components/assests/mail-5924.png';
 import password_icon from '../components/assests/login-password-11924.png';
 import option_icon from '../components/assests/option.png';
 import axios from "axios";
 
 const Registration = () => {
-    const [username, setusername] = useState("");
+    //const [username, setusername] = useState("");
     const [email, setemail] = useState("");
     const [usertype, setusertype] = useState("");
     const [password, setpassword] = useState("");
     const [confirmpassword, setconfirmpassword] = useState("");
+    const [error, setError] = useState("");
 
+    const navigate = useNavigate();
 
-
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+        setError(""); // Clear any previous errors
 
-        
+        // Validate required fields
+        if (!email || !usertype || !password || !confirmpassword) {
+            setError("Please fill in all required fields.");
+            return;
+        }
 
+        // Validate password match
+        if (password !== confirmpassword) {
+            setError("Passwords do not match.");
+            return;
+        }
 
-        var formData = new FormData();
-
-        formData.append("username", username);
+        const formData = new FormData();
+        //formData.append("username", username);
         formData.append("email", email);
         formData.append("usertype", usertype);
         formData.append("password", password);
         formData.append("confirmpassword", confirmpassword);
 
-        axios.post('http://localhost/backend/login.php',formData)
-        //test
-    }
+        try {
+            const response = await axios.post("http://localhost/backend/login.php", formData);
+
+            if (response.data.success) {
+                navigate("/home");
+            } else {
+                setError(response.data.message || "Registration failed.");
+            }
+        } catch (err) {
+            setError("An error occurred while registering.");
+            console.error("Registration Error:", err);
+        }
+    };
 
     return (
         <div className="w-full h-screen flex items-center justify-center bg-gradient-to-br from-blue-300 via-white to-blue-500">
@@ -43,10 +64,22 @@ const Registration = () => {
                     <hr className="my-4 border-gray-200" />
                 </div>
 
+                {error && (
+                    <div className="text-red-600 text-center font-semibold mb-4">
+                        {error}
+                    </div>
+                )}
 
                 <form className="flex flex-col gap-4 sm:gap-6" onSubmit={handleSubmit}>
-                    <InputComponent icon={user_icon} placeholder="Username" inputtype="text" value={username} onChange={setusername} />
-                    <InputComponent icon={email_icon} placeholder="Email" inputtype="email" value={email} onChange={setemail} />
+               
+                    <InputComponent
+                        icon={email_icon}
+                        placeholder="Email"
+                        inputtype="email"
+                        value={email}
+                        onChange={setemail}
+                        required
+                    />
 
                     {/* Dropdown */}
                     <div className="relative text-gray-400">
@@ -57,8 +90,8 @@ const Registration = () => {
                         />
                         <select
                             value={usertype}
-                            //onChange={handleUserTypeChange}
                             onChange={(e) => setusertype(e.target.value)}
+                            required
                             className="w-full py-5 pl-14 pr-4 rounded-lg bg-blue-50 focus:ring-blue-500 focus:border-blue-500"
                         >
                             <option value="" disabled>Select User Type</option>
@@ -68,8 +101,22 @@ const Registration = () => {
                         </select>
                     </div>
 
-                    <InputComponent icon={password_icon} placeholder="Password" inputtype="password" value={password} onChange={setpassword} />
-                    <InputComponent icon={password_icon} placeholder="Confirm Password" inputtype="password" value={confirmpassword} onChange={setconfirmpassword} />
+                    <InputComponent
+                        icon={password_icon}
+                        placeholder="Password"
+                        inputtype="password"
+                        value={password}
+                        onChange={setpassword}
+                        required
+                    />
+                    <InputComponent
+                        icon={password_icon}
+                        placeholder="Confirm Password"
+                        inputtype="password"
+                        value={confirmpassword}
+                        onChange={setconfirmpassword}
+                        required
+                    />
 
                     <div className="mt-4">
                         <button
@@ -80,7 +127,6 @@ const Registration = () => {
                         </button>
                     </div>
                 </form>
-
             </div>
         </div>
     );
