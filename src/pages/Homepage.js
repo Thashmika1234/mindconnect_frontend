@@ -13,7 +13,7 @@ import "swiper/css/pagination";
 
 export default function Homepage() {
     return (
-        <div>
+        <div className="flex flex-col min-h-screen">
             {/* Navigation */}
             <nav className="bg-gradient-to-r from-blue-50 to-white shadow-lg border border-gray-300 px-6 py-3">
                 <div className="flex items-center justify-between">
@@ -43,86 +43,94 @@ export default function Homepage() {
                 </div>
             </nav>
 
-            {/* Slideshow with fixed text */}
-            <div className="relative px-6 py-8">
-                {/* Fixed Text aligned to right */}
-                <div className="absolute inset-0 z-10 flex items-center justify-end pr-12 pointer-events-none">
-                    <h2 className="text-white text-8xl font-bold drop-shadow-lg">Mind Connect</h2>
+            {/* Main Content */}
+            <main className="flex-grow">
+                {/* Slideshow with fixed text */}
+                <div className="relative px-6 py-8">
+                    {/* Fixed Text aligned to right */}
+                    <div className="absolute inset-0 z-10 flex items-center justify-end pr-12 pointer-events-none">
+                        <h2 className="text-white text-8xl font-bold drop-shadow-lg">Mind Connect</h2>
+                    </div>
+
+                    {/* Swiper Slideshow */}
+                    <Swiper
+                        modules={[Autoplay, Pagination]}
+                        autoplay={{ delay: 6000, disableOnInteraction: false }}
+                        pagination={{ clickable: true }}
+                        loop={true}
+                        className="w-full h-[700px] rounded-xl overflow-hidden shadow-md"
+                    >
+                        {[img1, img2, img3].map((img, index) => (
+                            <SwiperSlide key={index}>
+                                <div className="relative w-full h-[700px]">
+                                    <img
+                                        src={img}
+                                        alt={`Therapist Session ${index + 1}`}
+                                        className="w-full h-full object-cover"
+                                    />
+                                    {/* Dark overlay */}
+                                    <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
                 </div>
 
-                {/* Swiper Slideshow */}
-                <Swiper
-                    modules={[Autoplay, Pagination]}
-                    autoplay={{ delay: 6000, disableOnInteraction: false }}
-                    pagination={{ clickable: true }}
-                    loop={true}
-                    className="w-full h-[700px] rounded-xl overflow-hidden shadow-md"
-                >
-                    {[img1, img2, img3].map((img, index) => (
-                        <SwiperSlide key={index}>
-                            <div className="relative w-full h-[700px]">
-                                <img
-                                    src={img}
-                                    alt={`Therapist Session ${index + 1}`}
-                                    className="w-full h-full object-cover"
-                                />
-                                {/* Dark overlay */}
-                                <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
-            </div>
+                {/* 3 Cards Section with increased height */}
+                <div className="py-12 px-6 bg-gray-50 w-full">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                        {/* Card 1 */}
+                        <div
+                            className="bg-white shadow-lg rounded-xl p-6 hover:shadow-xl transition flex flex-col"
+                            style={{ minHeight: "300px" }}
+                        >
+                            <div className="text-4xl text-blue-600 mb-4">💬</div>
+                            <h3 className="text-xl font-bold mb-2">Share Your Feelings</h3>
+                            <p className="text-gray-600 mb-4 flex-grow">
+                                Post your thoughts anonymously and get responses from professionals and others.
+                            </p>
+                            <button className="mt-auto py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600">
+                                Start Talking
+                            </button>
+                        </div>
 
-            {/* 3 Cards Section with increased height */}
-            <div className="py-12 px-6 bg-gray-50 w-full">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                    {/* Card 1 */}
-                    <div
-                        className="bg-white shadow-lg rounded-xl p-6 hover:shadow-xl transition"
-                        style={{ minHeight: "300px" }}
-                    >
-                        <div className="text-4xl text-blue-600 mb-4">💬</div>
-                        <h3 className="text-xl font-bold mb-2">Share Your Feelings</h3>
-                        <p className="text-gray-600 mb-4">
-                            Post your thoughts anonymously and get responses from professionals and others.
-                        </p>
-                        <button className="mt-auto py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600">
-                            Start Talking
-                        </button>
-                    </div>
+                        {/* Card 2 */}
+                        <div
+                            className="bg-white shadow-lg rounded-xl p-6 hover:shadow-xl transition flex flex-col"
+                            style={{ minHeight: "300px" }}
+                        >
+                            <div className="text-4xl text-green-600 mb-4">🧑‍⚕️</div>
+                            <h3 className="text-xl font-bold mb-2">Find a Therapist</h3>
+                            <p className="text-gray-600 mb-4 flex-grow">
+                                Browse verified counselors and doctors. Book sessions online at your convenience.
+                            </p>
+                            <button className="mt-auto py-2 px-4 bg-green-500 text-white rounded hover:bg-green-600">
+                                Explore Now
+                            </button>
+                        </div>
 
-                    {/* Card 2 */}
-                    <div
-                        className="bg-white shadow-lg rounded-xl p-6 hover:shadow-xl transition"
-                        style={{ minHeight: "300px" }}
-                    >
-                        <div className="text-4xl text-green-600 mb-4">🧑‍⚕️</div>
-                        <h3 className="text-xl font-bold mb-2">Find a Therapist</h3>
-                        <p className="text-gray-600 mb-4">
-                            Browse verified counselors and doctors. Book sessions online at your convenience.
-                        </p>
-                        <button className="mt-auto py-2 px-4 bg-green-500 text-white rounded hover:bg-green-600">
-                            Explore Now
-                        </button>
-                    </div>
-
-                    {/* Card 3 */}
-                    <div
-                        className="bg-white shadow-lg rounded-xl p-6 hover:shadow-xl transition"
-                        style={{ minHeight: "300px" }}
-                    >
-                        <div className="text-4xl text-purple-600 mb-4">📚</div>
-                        <h3 className="text-xl font-bold mb-2">Learn About Mental Health</h3>
-                        <p className="text-gray-600 mb-4">
-                            Read posts and guides from experts about anxiety, depression, stress, and more.
-                        </p>
-                        <button className="mt-auto py-2 px-4 bg-purple-500 text-white rounded hover:bg-purple-600">
-                            Read Articles
-                        </button>
+                        {/* Card 3 */}
+                        <div
+                            className="bg-white shadow-lg rounded-xl p-6 hover:shadow-xl transition flex flex-col"
+                            style={{ minHeight: "300px" }}
+                        >
+                            <div className="text-4xl text-purple-600 mb-4">📚</div>
+                            <h3 className="text-xl font-bold mb-2">Learn About Mental Health</h3>
+                            <p className="text-gray-600 mb-4 flex-grow">
+                                Read posts and guides from experts about anxiety, depression, stress, and more.
+                            </p>
+                            <button className="mt-auto py-2 px-4 bg-purple-500 text-white rounded hover:bg-purple-600">
+                                Read Articles
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </main>
+
+            {/* Footer */}
+            <footer className="bg-blue-50 border-t border-gray-300 py-6 text-center text-gray-600 text-sm">
+                &copy; {new Date().getFullYear()} Mind Connect. All rights reserved.
+            </footer>
         </div>
     );
 }
