@@ -51,16 +51,16 @@ const DoctorHomePage = () => {
 
       {/* Profile Section */}
       <div className="bg-gradient-to-r from-blue-700 to-blue-300 relative flex items-center p-3 shadow-xl mx-3 my-4">
-        <div className="shadow-lg bg-white border border-gray-300 w-28 h-28 p-2 flex items-center justify-center">
+        <div className="shadow-lg bg-white border border-gray-300 w-28 h-28 p-2 flex items-center justify-center rounded-full">
           <button onClick={todoctoraccount}>
-            <img src={doctor_avater} alt="Doctor" className="w-24 h-24 rounded-full" />
+            <img src={doctor_avater} alt="Doctor" className="w-24 h-24 rounded-full object-cover" />
           </button>
         </div>
 
         <div className="ml-6">
-          <h1 className="text-white text-3xl font-semibold">Dr. Saman</h1>
+          <h1 className="text-white text-3xl font-semibold">Dr.P Saman Wimalasooriya</h1>
           <p className="text-blue-100 text-lg py-2">MBBS, License #12345678</p>
-          <p className="text-white text-lg font-semibold bg-green-500 px-3 py-1 inline-block shadow-md">
+          <p className="text-white text-lg font-semibold bg-green-500 px-3 py-1 inline-block rounded-full shadow-md">
             Doctor
           </p>
         </div>
@@ -88,48 +88,48 @@ const DoctorHomePage = () => {
       </Link>
 
       {/* Post 1 */}
-      <div className="p-6 shadow-xl bg-white mx-3 my-4 text-center" id="posting-div">
+      <div className="p-4 shadow-lg bg-white mx-3 my-3 text-center w-full rounded-md" id="posting-div">
         <img
           src={post_2_image}
           alt="Post Visual"
-          className="mx-auto w-1/2 h-auto shadow-md"
+          className="mx-auto w-1/2 h-auto shadow-md rounded-md"
         />
-        <h2 className="text-2xl font-semibold text-gray-800 mt-4 mb-2">
+        <h2 className="text-xl font-semibold text-gray-800 mt-3 mb-1">
           Which Symptom is Not Associated with Major Depressive Disorder?
         </h2>
-        <p className="text-gray-700 text-lg text-left">
+        <p className="text-gray-700 text-base text-left leading-relaxed px-4 md:px-0 max-w-4xl mx-auto">
           While Major Depressive Disorder (MDD) is characterized by a range of symptoms, there is one symptom that is not typically associated with this condition: mania. Mania is a symptom of bipolar disorder, a separate mood disorder characterized by both manic and depressive episodes. In contrast, MDD is typically characterized by persistent sadness, hopelessness, and a loss of interest in activities. Other common symptoms of MDD include changes in appetite or weight, changes in sleep patterns, fatigue, feelings of worthlessness or guilt, difficulty concentrating, and thoughts of death or suicide. If you are experiencing symptoms of mania or MDD, it’s important to seek help from a healthcare provider.
         </p>
         {/* Like & Comment Buttons */}
-        <div className="flex justify-center gap-6 mt-4">
-          <button className="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+        <div className="flex justify-center gap-5 mt-3">
+          <button className="flex items-center gap-2 bg-blue-500 text-white px-3 py-1.5 rounded hover:bg-blue-600 transition text-sm md:text-base">
             👍 Like
           </button>
-          <button className="flex items-center gap-2 bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 transition">
+          <button className="flex items-center gap-2 bg-gray-300 text-gray-700 px-3 py-1.5 rounded hover:bg-gray-400 transition text-sm md:text-base">
             💬 Comment
           </button>
         </div>
       </div>
 
       {/* Post 2 */}
-      <div className="p-6 shadow-xl bg-white mx-3 my-4 text-center" id="posting-div">
+      <div className="p-4 shadow-lg bg-white mx-3 my-3 text-center w-full rounded-md" id="posting-div">
         <img
           src={post_1_image}
           alt="Post Visual"
-          className="mx-auto w-1/2 h-auto shadow-md"
+          className="mx-auto w-1/2 h-auto shadow-md rounded-md"
         />
-        <h2 className="text-2xl font-semibold text-gray-800 mt-4 mb-2">
+        <h2 className="text-xl font-semibold text-gray-800 mt-3 mb-1">
           Depression & Recovery
         </h2>
-        <p className="text-gray-700 text-lg text-left">
+        <p className="text-gray-700 text-base text-left leading-relaxed px-4 md:px-0 max-w-4xl mx-auto">
           Some of the common signs of the major depressive disorder include a persistent sad or empty mood, feelings of worthlessness or guilt, fatigue, decreased energy, difficulty concentrating, and sleep disturbances. Individuals with major depressive disorder may also experience a significant change in appetite or weight and physical symptoms such as headaches and stomach problems. It is important to note that symptoms of major depressive disorder can vary from person to person, and not everyone will experience the same symptoms. If you or someone you know is experiencing any of these symptoms, it is important to seek the help of a mental health professional who can provide an accurate diagnosis and appropriate treatment. With proper care and treatment, individuals with major depressive disorder can manage their symptoms and lead fulfilling lives.
         </p>
         {/* Like & Comment Buttons */}
-        <div className="flex justify-center gap-6 mt-4">
-          <button className="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+        <div className="flex justify-center gap-5 mt-3">
+          <button className="flex items-center gap-2 bg-blue-500 text-white px-3 py-1.5 rounded hover:bg-blue-600 transition text-sm md:text-base">
             👍 Like
           </button>
-          <button className="flex items-center gap-2 bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 transition">
+          <button className="flex items-center gap-2 bg-gray-300 text-gray-700 px-3 py-1.5 rounded hover:bg-gray-400 transition text-sm md:text-base">
             💬 Comment
           </button>
         </div>
