@@ -29,7 +29,7 @@ export const LoginSignup = () => {
 
       if (response.data.success) {
         setError('');
-        navigate('/home');
+        navigate('/DoctorHomePage');
       } else {
         setError(response.data.message || 'Invalid email or password.');
       }
