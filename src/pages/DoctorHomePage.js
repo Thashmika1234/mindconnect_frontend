@@ -39,11 +39,13 @@ const DoctorHomePage = () => {
 
             {/* Logout Button */}
             <div>
+              <Link to={"/homepage"}>
               <button
                 className="py-2 px-6 rounded-lg bg-gradient-to-r from-blue-300 to-blue-700 text-white text-base sm:text-lg font-semibold hover:bg-gradient-to-r hover:from-blue-800 hover:to-blue-400 transition duration-300"
               >
                 Logout
               </button>
+              </Link>
             </div>
           </div>
         </div>
