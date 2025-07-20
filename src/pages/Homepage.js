@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import mindconnect from "../components/assests/mindconnect_logo.png";
-import img1 from "../components/assests/istockphoto-1369683259-612x612.jpg";
-import img2 from "../components/assests/successful-psychologist-talking-to-her-patient-SBI-324310484-scaled.jpg";
-import img3 from "../components/assests/img1.jpg";
+import img1 from "../components/assests/image1.png";
+import img2 from "../components/assests/image2.webp";
+import img3 from "../components/assests/image3.jpg";
 
 // Swiper imports
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -15,41 +15,48 @@ export default function Homepage() {
     return (
         <div className="flex flex-col min-h-screen">
             {/* Navigation */}
-            <nav className="bg-gradient-to-r from-blue-50 to-white shadow-lg border border-gray-300 px-6 py-3">
-                <div className="flex items-center justify-between">
-                    <div className="flex gap-12">
-                        <img src={mindconnect} alt="MindConnect Logo" className="w-60" />
-                    </div>
-                    <div className="flex gap-8">
-                        <div className="flex items-center gap-12 ml-auto text-blue-400 sm:text-base">
-                            <div className="hover:text-blue-700 cursor-pointer text-xl">About Us</div>
-                            <div className="hover:text-blue-700 cursor-pointer text-xl">Notifications</div>
-                        </div>
-                        <div>
-                            <Link to={"/login"}>
-                                <button className="py-2 px-6 rounded-lg bg-gradient-to-r from-blue-300 to-blue-700 text-white text-base sm:text-lg font-semibold hover:from-blue-800 hover:to-blue-400 transition duration-300">
-                                    Sign In
-                                </button>
-                            </Link>
-                        </div>
-                        <div>
-                            <Link to={"/registration"}>
-                                <button className="py-2 px-6 rounded-lg bg-gradient-to-r from-blue-300 to-blue-700 text-white text-base sm:text-lg font-semibold hover:from-blue-800 hover:to-blue-400 transition duration-300">
-                                    Sign Up
-                                </button>
-                            </Link>
-                        </div>
-                    </div>
+            <nav className="bg-white/30 backdrop-blur-lg shadow-md border-b border-blue-200 px-6 py-4 sticky top-0 z-50">
+    <div className="flex items-center justify-between">
+        <div className="flex gap-12">
+            <img src={mindconnect} alt="MindConnect Logo" className="w-60" />
+        </div>
+        <div className="flex gap-8 items-center">
+            <div className="flex items-center gap-12 text-blue-500 font-medium sm:text-base">
+                <div className="relative group cursor-pointer text-xl transition">
+                    About Us
+                    <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
                 </div>
-            </nav>
+                <div className="relative group cursor-pointer text-xl transition">
+                    Notifications
+                    <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
+                </div>
+            </div>
+            <div>
+                <Link to={"/login"}>
+                    <button className="py-2 px-6 rounded-lg bg-gradient-to-r from-blue-400 to-blue-700 text-white text-base sm:text-lg font-semibold shadow-md hover:from-blue-700 hover:to-blue-400 transition duration-300">
+                        Log In
+                    </button>
+                </Link>
+            </div>
+            <div>
+                <Link to={"/registration"}>
+                    <button className="py-2 px-6 rounded-lg bg-gradient-to-r from-blue-400 to-blue-700 text-white text-base sm:text-lg font-semibold shadow-md hover:from-blue-700 hover:to-blue-400 transition duration-300">
+                        Sign Up
+                    </button>
+                </Link>
+            </div>
+        </div>
+    </div>
+</nav>
+
 
             {/* Main Content */}
             <main className="flex-grow">
                 {/* Slideshow with fixed text */}
-                <div className="relative px-6 py-8">
+                <div className="relative">
                     {/* Fixed Text aligned to right */}
                     <div className="absolute inset-0 z-10 flex items-center justify-end pr-12 pointer-events-none">
-                        <h2 className="text-white text-8xl font-bold drop-shadow-lg">Mind Connect</h2>
+                        <h2 className="text-white text-8xl font-bold drop-shadow-lg">mindconnect</h2>
                     </div>
 
                     {/* Swiper Slideshow */}
@@ -58,7 +65,7 @@ export default function Homepage() {
                         autoplay={{ delay: 6000, disableOnInteraction: false }}
                         pagination={{ clickable: true }}
                         loop={true}
-                        className="w-full h-[700px] rounded-xl overflow-hidden shadow-md"
+                        className="w-full h-[700px] overflow-hidden shadow-md"
                     >
                         {[img1, img2, img3].map((img, index) => (
                             <SwiperSlide key={index}>
@@ -76,12 +83,12 @@ export default function Homepage() {
                     </Swiper>
                 </div>
 
-                {/* 3 Cards Section with increased height */}
+                {/* 3 Cards Section */}
                 <div className="py-12 px-6 bg-gray-50 w-full">
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                         {/* Card 1 */}
                         <div
-                            className="bg-white shadow-lg rounded-xl p-6 hover:shadow-xl transition flex flex-col"
+                            className="bg-white shadow-lg p-6 hover:shadow-xl transition flex flex-col"
                             style={{ minHeight: "300px" }}
                         >
                             <div className="text-4xl text-blue-600 mb-4">💬</div>
@@ -96,7 +103,7 @@ export default function Homepage() {
 
                         {/* Card 2 */}
                         <div
-                            className="bg-white shadow-lg rounded-xl p-6 hover:shadow-xl transition flex flex-col"
+                            className="bg-white shadow-lg p-6 hover:shadow-xl transition flex flex-col"
                             style={{ minHeight: "300px" }}
                         >
                             <div className="text-4xl text-green-600 mb-4">🧑‍⚕️</div>
@@ -111,7 +118,7 @@ export default function Homepage() {
 
                         {/* Card 3 */}
                         <div
-                            className="bg-white shadow-lg rounded-xl p-6 hover:shadow-xl transition flex flex-col"
+                            className="bg-white shadow-lg p-6 hover:shadow-xl transition flex flex-col"
                             style={{ minHeight: "300px" }}
                         >
                             <div className="text-4xl text-purple-600 mb-4">📚</div>
