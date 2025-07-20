@@ -1,20 +1,32 @@
-import React from 'react';
+import React from "react";
+import option_icon from "../components/assests/option.png";
 import mindconnect from "../components/assests/mindconnect_logo.png";
-import doctor_avater from "../components/assests/doctor_avatar.jpg";
+import doctor_avatar from "../components/assests/doctor_avatar.jpg";
 import appointment_icon from "../components/assests/appointment_icon.png";
-import message_icon from "../components/assests/message_icon.png";
 import settings_icon from "../components/assests/settings_icon.png";
-export default function Account() {
+import message_icon from "../components/assests/message_icon.png";
+import { Link, useNavigate } from "react-router-dom";
+
+const DoctorHomePage = () => {
+  const navigate = useNavigate();
+
+  const todoctoraccount = () => {
+    navigate("/doctoraccount");
+  };
+
+
+
+
   return (
     <div>
-        <nav className="bg-gradient-to-r from-blue-50 to-white shadow-lg border border-gray-300 px-6 py-3">
+      <nav className="bg-gradient-to-r from-blue-50 to-white shadow-lg border border-gray-300 px-6 py-3">
         <div className="flex items-center justify-between">
           {/* Left Section: Icons */}
           <div className="flex gap-12">
-            
+            <Link to={"/login"}>
               <img src={mindconnect} alt="MindConnect Logo" className="w-60" />
-            
-            
+            </Link>
+
           </div>
 
           <div className="flex gap-8">
@@ -36,20 +48,21 @@ export default function Account() {
           </div>
         </div>
       </nav>
+
       <div className="bg-gradient-to-r from-blue-700 to-blue-300 relative flex items-center p-3 rounded-lg shadow-xl mx-3 my-4">
         {/* Circle Div */}
         <div className="shadow-lg rounded-full bg-white border border-gray-300 w-28 h-28 p-2 flex items-center justify-center">
-          <button>
-            <img src={doctor_avater} alt="Doctor" className="w-24 h-24 rounded-full" />
+          <button onClick={todoctoraccount}>
+            <img src={doctor_avatar} alt="Doctor" className="w-24 h-24 rounded-full" />
           </button>
         </div>
 
         {/* Content Section */}
         <div className="ml-6">
-          <h1 className="text-white text-2xl font-semibold">Dr. abcd</h1>
+          <h1 className="text-white text-2xl font-semibold">Dr. Saman</h1>
           <p className="text-blue-100 text-sm py-2">MBBS, License #12345678</p>
           <p className="text-white text-sm font-semibold bg-green-500 rounded-full px-3 py-1 inline-block shadow-md">
-            Senior Consultant
+            Doctor
           </p>
         </div>
 
@@ -66,6 +79,16 @@ export default function Account() {
           </button>
         </div>
       </div>
+
+      {/* Button Section */}
+      <div className="flex items-center justify-center p-3 rounded-lg shadow-xl bg-white mx-3 my-4">
+        <button className="w-1/4 text-white bg-gradient-to-r from-blue-500 to-blue-700 font-semibold py-3 px-4 rounded-lg mx-1 mb-2 hover:from-blue-300 hover:to-blue-500 shadow-md transition-all sm:text-base md:text-lg">
+          New Post
+        </button>
+      </div>
+
     </div>
-  )
-}
+  );
+};
+
+export default DoctorHomePage;
