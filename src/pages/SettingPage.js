@@ -32,7 +32,7 @@ function Settings() {
 
         {/* Username Field */}
         <div className="mb-4">
-          <label className="block text-gray-700 mb-2 font-semibold">Username</label>
+          <label className="block text-gray-700 mb-2 font-semibold">Update username</label>
           <input
             type="text"
             value={username}
