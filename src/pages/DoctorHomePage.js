@@ -14,6 +14,10 @@ const DoctorHomePage = () => {
     navigate("/doctoraccount");
   };
 
+  const tosetting = ()=>{
+    navigate("/SettingPage");
+  }
+
 
 
 
@@ -76,7 +80,7 @@ const DoctorHomePage = () => {
           <button>
             <img src={message_icon} alt="Message Icon" className="w-9" />
           </button>
-          <button>
+          <button onClick={tosetting}>
             <img src={settings_icon} alt="Settings Icon" className="w-9" />
           </button>
         </div>

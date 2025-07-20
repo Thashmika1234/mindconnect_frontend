@@ -11,7 +11,7 @@ import Posting from './pages/Posting';
 import CounsellorHomePage from './pages/ CounsellorHomePage';
 import CounsellorAccount from './pages/CounsellorAccount';
 import Homepage from './pages/Homepage';
-
+import SettingPage from './pages/SettingPage';
 
 function App() {
   return (
@@ -28,6 +28,11 @@ function App() {
         <Route path='/counsellorAccount' element={<CounsellorAccount/>}/>
         <Route path='/posting' element={<Posting/>}/>
         <Route path='/homepage' element={<Homepage/>}/>
+        <Route path='/SettingPage' element={<SettingPage/>}/>
+
+
+       
+        
         
         
         
