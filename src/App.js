@@ -12,34 +12,36 @@ import CounsellorHomePage from './pages/ CounsellorHomePage';
 import CounsellorAccount from './pages/CounsellorAccount';
 import Homepage from './pages/Homepage';
 import SettingPage from './pages/SettingPage';
+import AboutUs from "./pages/AboutUs";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        
-        <Route path='/Registration' element={<Registration/>}/>
-        <Route path='/login' element={<LoginSignup/>}/>
-        <Route path='/' element={<DoctorHomePage/>}/>
-        <Route path='/doctoraccount' element={<DoctorAccount/>}/>
-        <Route path='/regularUserHomePage' element={<RegularUserHomePage/>}/>
-        <Route path='/regularUserAccount' element={<RegularUserAccount/>}/>
-        <Route path='/counsellorHomePage' element={<CounsellorHomePage/>}/>
-        <Route path='/counsellorAccount' element={<CounsellorAccount/>}/>
-        <Route path='/posting' element={<Posting/>}/>
-        <Route path='/homepage' element={<Homepage/>}/>
-        <Route path='/SettingPage' element={<SettingPage/>}/>
+
+        <Route path='/Registration' element={<Registration />} />
+        <Route path='/login' element={<LoginSignup />} />
+        <Route path='/' element={<DoctorHomePage />} />
+        <Route path='/doctoraccount' element={<DoctorAccount />} />
+        <Route path='/regularUserHomePage' element={<RegularUserHomePage />} />
+        <Route path='/regularUserAccount' element={<RegularUserAccount />} />
+        <Route path='/counsellorHomePage' element={<CounsellorHomePage />} />
+        <Route path='/counsellorAccount' element={<CounsellorAccount />} />
+        <Route path='/posting' element={<Posting />} />
+        <Route path='/homepage' element={<Homepage />} />
+        <Route path='/SettingPage' element={<SettingPage />} />
+        <Route path="/about" element={<AboutUs />} />
 
 
-       
-        
-        
-        
-        
-        
-      
-        
-        
+
+
+
+
+
+
+
+
+
       </Routes>
     </BrowserRouter>
   );
