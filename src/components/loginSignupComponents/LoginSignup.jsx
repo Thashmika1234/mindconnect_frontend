@@ -29,7 +29,7 @@ export const LoginSignup = () => {
 
       if (response.data.success) {
         setError('');
-        navigate('/home');
+        navigate('/regularUserAccount');
       } else {
         setError(response.data.message || 'Invalid email or password.');
       }
@@ -65,6 +65,14 @@ export const LoginSignup = () => {
             value={password}
             onChange={setPassword}
           />
+          <div className="text-right mt-1 text-sm">
+            <span
+              className="text-blue-600 cursor-pointer hover:underline"
+              onClick={() => navigate('/ForgotPassword')}
+            >
+              Forgot Password?
+            </span>
+          </div>
         </div>
         {error && <div className="text-red-600 text-sm mt-3 text-center">{error}</div>}
         <div className="mt-5 text-gray-600 text-center">

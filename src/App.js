@@ -12,6 +12,7 @@ import CounsellorHomePage from './pages/ CounsellorHomePage';
 import CounsellorAccount from './pages/CounsellorAccount';
 import Homepage from './pages/Homepage';
 import SettingPage from './pages/SettingPage';
+import ForgotPassword from './pages/ForgotPassword';
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
         <Route path='/posting' element={<Posting/>}/>
         <Route path='/homepage' element={<Homepage/>}/>
         <Route path='/SettingPage' element={<SettingPage/>}/>
+        <Route path='/ForgotPassword' element={<ForgotPassword/>}/>
+        
 
 
        
