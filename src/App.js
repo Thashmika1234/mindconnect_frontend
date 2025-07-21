@@ -13,6 +13,7 @@ import CounsellorAccount from './pages/CounsellorAccount';
 import Homepage from './pages/Homepage';
 import SettingPage from './pages/SettingPage';
 import AboutUs from "./pages/AboutUs";
+import Adminpannel from "./pages/Adminpannel";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 
@@ -32,7 +33,10 @@ function App() {
         <Route path='/posting' element={<Posting />} />
         <Route path='/homepage' element={<Homepage />} />
         <Route path='/SettingPage' element={<SettingPage />} />
-        <Route path="/about" element={<AboutUs />} />
+        <Route path="/about" element={<AboutUs/>} />
+        <Route path="/Adminpannel" element={<Adminpannel/>} />
+        
+        
 
 
 
