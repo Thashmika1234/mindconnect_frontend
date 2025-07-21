@@ -36,7 +36,7 @@ const Posting = () => {
       setPost("");
 
       // Navigate to homepage after successful post
-      navigate("/regularUserHomePage"); // Replace "/" with your homepage route if different
+      navigate("/regularUserAccount"); // Replace "/" with your homepage route if different
     } else {
       alert("Please write something before posting.");
     }

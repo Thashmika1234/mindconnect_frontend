@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+// RegularUserHomePage.js
+import React from "react";
 import mindconnect from "../components/assests/mindconnect_logo.png";
 import person_avater from "../components/assests/user_avater.png";
 import appointment_icon from "../components/assests/appointment_icon.png";
@@ -6,31 +7,11 @@ import message_icon from "../components/assests/message_icon.png";
 import settings_icon from "../components/assests/settings_icon.png";
 import { Link, useNavigate } from "react-router-dom";
 
-const RegularUserHomePage = () => {
-  const [posts, setPosts] = useState([]);
+export default function RegularUserHomePage() {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const storedPosts = JSON.parse(localStorage.getItem("posts")) || [];
-    setPosts(storedPosts);
-  }, []);
-
-  const toposting = () => {
-    navigate("/posting");
-  };
-
-  const toRegularUserAccount = () => {
-    navigate("/regularUserAccount");
-  };
-
-  const handleDelete = (id) => {
-    const updatedPosts = posts.filter((post) => post.id !== id);
-    setPosts(updatedPosts);
-    localStorage.setItem("posts", JSON.stringify(updatedPosts));
-  };
-
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div>
       <nav className="bg-gradient-to-r from-blue-50 to-white shadow-lg border border-gray-300 px-6 py-3">
         <div className="flex items-center justify-between">
           <div className="flex gap-12">
@@ -41,7 +22,9 @@ const RegularUserHomePage = () => {
 
           <div className="flex gap-8">
             <div className="flex items-center gap-12 ml-auto text-blue-400 sm:text-base">
-              <div className="hover:text-blue-700 cursor-pointer text-xl">Home</div>
+              <Link to={"/regularUserHomePage"}>
+                <div className="hover:text-blue-700 cursor-pointer text-xl">Home</div>
+              </Link>
               <div className="hover:text-blue-700 cursor-pointer text-xl">About Us</div>
               <div className="hover:text-blue-700 cursor-pointer text-xl">Notifications</div>
             </div>
@@ -57,9 +40,11 @@ const RegularUserHomePage = () => {
 
       <div className="bg-gradient-to-r from-blue-700 to-blue-300 relative flex items-center p-3 rounded-lg shadow-xl mx-3 my-4">
         <div className="shadow-lg rounded-full bg-white border border-gray-300 w-28 h-28 p-2 flex items-center justify-center">
-          <button onClick={toRegularUserAccount}>
+          <Link to={"/regularUserAccount"}>
+          <button>
             <img src={person_avater} alt="Regular user" className="w-24 h-24 rounded-full" />
           </button>
+          </Link>
         </div>
 
         <div className="ml-6">
@@ -82,49 +67,17 @@ const RegularUserHomePage = () => {
         </div>
       </div>
 
+      
+      <Link to={"/posting"}>
       <div className="flex items-center justify-center p-3 rounded-lg shadow-xl bg-white mx-3 my-4">
-        <button
-          className="w-1/4 text-white bg-gradient-to-r from-blue-500 to-blue-700 font-semibold py-3 px-4 rounded-lg mx-1 mb-2 hover:from-blue-300 hover:to-blue-500 shadow-md transition-all sm:text-base md:text-lg"
-          onClick={toposting}
-        >
+        
+        
+        <button className="w-1/4 text-white bg-gradient-to-r from-blue-500 to-blue-700 font-semibold py-3 px-4 rounded-lg mx-1 mb-2 hover:from-blue-300 hover:to-blue-500 shadow-md transition-all sm:text-base md:text-lg">
           What's on Your Mind?
         </button>
+        
       </div>
-
-      <div className="flex flex-col items-center gap-10 px-4 pb-20">
-        {posts.length === 0 ? (
-          <p className="text-gray-500 text-xl">No posts yet.</p>
-        ) : (
-          posts.map((post) => (
-            <div
-              key={post.id}
-              className="relative rounded-2xl shadow-xl px-10 py-10"
-              style={{
-                backgroundColor: post.bgColor,
-                fontFamily: post.font,
-                fontSize: `${post.fontSize}px`,
-                width: "60%",
-                textAlign: "center",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                minHeight: "360px",
-              }}
-            >
-              <span>{post.content}</span>
-              <button
-                className="absolute top-2 right-4 text-red-600 text-3xl font-bold hover:text-red-800"
-                onClick={() => handleDelete(post.id)}
-                title="Delete post"
-              >
-                ×
-              </button>
-            </div>
-          ))
-        )}
-      </div>
+      </Link>
     </div>
   );
-};
-
-export default RegularUserHomePage;
+}
