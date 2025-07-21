@@ -48,7 +48,8 @@ const RegularUserAccount = () => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <nav className="bg-gradient-to-r from-blue-50 to-white shadow-lg border border-gray-300 px-6 py-3">
+      <nav className="sticky top-0 z-50 bg-gradient-to-r from-blue-50 to-white shadow-lg border border-gray-300 px-6 py-3">
+
         <div className="flex items-center justify-between">
           <div className="flex gap-12">
             <Link to={"/login"}>

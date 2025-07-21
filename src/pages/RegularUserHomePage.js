@@ -51,7 +51,7 @@ export default function RegularUserHomePage() {
         </div>
 
         <div className="ml-6">
-          <h1 className="text-white text-2xl font-semibold pb-4">Mr. abcd</h1>
+          <h1 className="text-white text-2xl font-semibold pb-4">Mr. abcde</h1>
           <p className="text-white text-sm font-semibold bg-green-500 rounded-full px-3 py-1 inline-block shadow-md">
             Regular user
           </p>
