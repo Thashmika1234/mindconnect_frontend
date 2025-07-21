@@ -1,4 +1,3 @@
-// RegularUserAccount.js
 import React, { useEffect, useState } from "react";
 import mindconnect from "../components/assests/mindconnect_logo.png";
 import person_avater from "../components/assests/user_avater.png";
@@ -9,11 +8,14 @@ import { Link, useNavigate } from "react-router-dom";
 
 const RegularUserAccount = () => {
   const [posts, setPosts] = useState([]);
+  const [likes, setLikes] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
     const storedPosts = JSON.parse(localStorage.getItem("posts")) || [];
+    const storedLikes = JSON.parse(localStorage.getItem("postLikes")) || {};
     setPosts(storedPosts);
+    setLikes(storedLikes);
   }, []);
 
   const toposting = () => {
@@ -26,8 +28,22 @@ const RegularUserAccount = () => {
 
   const handleDelete = (id) => {
     const updatedPosts = posts.filter((post) => post.id !== id);
+    const updatedLikes = { ...likes };
+    delete updatedLikes[id];
+
     setPosts(updatedPosts);
+    setLikes(updatedLikes);
     localStorage.setItem("posts", JSON.stringify(updatedPosts));
+    localStorage.setItem("postLikes", JSON.stringify(updatedLikes));
+  };
+
+  const toggleLike = (postId) => {
+    const updatedLikes = {
+      ...likes,
+      [postId]: !likes[postId]
+    };
+    setLikes(updatedLikes);
+    localStorage.setItem("postLikes", JSON.stringify(updatedLikes));
   };
 
   return (
@@ -64,7 +80,7 @@ const RegularUserAccount = () => {
         </div>
 
         <div className="ml-6">
-          <h1 className="text-white text-2xl font-semibold pb-4">Mr. abcd</h1>
+          <h1 className="text-white text-2xl font-semibold pb-4">Mr.Akila Sudeepa</h1>
           <p className="text-white text-sm font-semibold bg-green-500 rounded-full px-3 py-1 inline-block shadow-md">
             Regular user
           </p>
@@ -97,29 +113,53 @@ const RegularUserAccount = () => {
           <p className="text-gray-500 text-xl">No posts yet.</p>
         ) : (
           posts.map((post) => (
-            <div
-              key={post.id}
-              className="relative rounded-2xl shadow-xl px-10 py-10"
-              style={{
-                backgroundColor: post.bgColor,
-                fontFamily: post.font,
-                fontSize: `${post.fontSize}px`,
-                width: "60%",
-                textAlign: "center",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                minHeight: "360px",
-              }}
-            >
-              <span>{post.content}</span>
-              <button
-                className="absolute top-2 right-4 text-red-600 text-3xl font-bold hover:text-red-800"
-                onClick={() => handleDelete(post.id)}
-                title="Delete post"
+            <div key={post.id} className="w-[60%] flex flex-col items-center">
+              <div
+                className="relative rounded-2xl shadow-xl px-10 py-10"
+                style={{
+                  backgroundColor: post.bgColor,
+                  fontFamily: post.font,
+                  fontSize: `${post.fontSize}px`,
+                  width: "100%",
+                  textAlign: "center",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  minHeight: "360px",
+                }}
               >
-                ×
-              </button>
+                <span>{post.content}</span>
+                <button
+                  className="absolute top-2 right-4 text-red-600 text-3xl font-bold hover:text-red-800"
+                  onClick={() => handleDelete(post.id)}
+                  title="Delete post"
+                >
+                  ×
+                </button>
+              </div>
+
+              {/* Like/Comment/Share buttons below post */}
+              <div className="w-full border-t border-gray-300 mt-3 pt-2 px-4">
+                <div className="flex justify-around text-gray-700 text-sm font-semibold">
+                  <button
+                    onClick={() => toggleLike(post.id)}
+                    className={`flex items-center gap-1 ${
+                      likes[post.id] ? "text-blue-600" : "hover:text-blue-600"
+                    }`}
+                  >
+                    👍 Like
+                  </button>
+                  <button className="flex items-center gap-1 hover:text-blue-600">
+                    💬 Comment
+                  </button>
+                  <button className="flex items-center gap-1 hover:text-blue-600">
+                    📤 Send
+                  </button>
+                  <button className="flex items-center gap-1 hover:text-blue-600">
+                    ↗️ Share
+                  </button>
+                </div>
+              </div>
             </div>
           ))
         )}

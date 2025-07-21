@@ -13,7 +13,7 @@ import CounsellorAccount from './pages/CounsellorAccount';
 import Homepage from './pages/Homepage';
 import SettingPage from './pages/SettingPage';
 import AboutUs from "./pages/AboutUs";
-import "@fortawesome/fontawesome-free/css/all.min.css";
+
 
 import ForgotPassword from './pages/ForgotPassword';
 
