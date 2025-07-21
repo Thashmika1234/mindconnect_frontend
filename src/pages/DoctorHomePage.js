@@ -33,8 +33,8 @@ const DoctorHomePage = () => {
 
           <div className="flex gap-8">
             <div className="flex items-center gap-12 ml-auto text-blue-400 sm:text-base">
-              <div className="hover:text-blue-700 cursor-pointer text-2xl">Home</div>
-              <div className="hover:text-blue-700 cursor-pointer text-2xl">About Us</div>
+              <Link to={"/homepage"}><div className="hover:text-blue-700 cursor-pointer text-2xl">Home</div></Link>
+              <Link to={"/about"}><div className="hover:text-blue-700 cursor-pointer text-2xl">About Us</div></Link>
               <div className="hover:text-blue-700 cursor-pointer text-2xl">Notifications</div>
             </div>
 

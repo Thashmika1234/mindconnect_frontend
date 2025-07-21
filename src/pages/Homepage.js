@@ -22,10 +22,12 @@ export default function Homepage() {
                     </div>
                     <div className="flex gap-8 items-center">
                         <div className="flex items-center gap-12 text-blue-500 font-medium sm:text-base">
+                            <Link to={"/about"}>
                             <div className="relative group cursor-pointer text-xl transition">
                                 About Us
                                 <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
                             </div>
+                            </Link>
                             <div className="relative group cursor-pointer text-xl transition">
                                 Notifications
                                 <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
