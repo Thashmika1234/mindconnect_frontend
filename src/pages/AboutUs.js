@@ -99,37 +99,69 @@ const AboutUs = () => {
     );
 };
 
+
+
+
+
+
+
+
+
 const Footer = () => {
     return (
-        <footer className="bg-blue-800 text-white py-10">
-            <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                    <h2 className="text-2xl font-bold mb-2">mindConnect</h2>
-                    <p className="text-sm text-blue-200">
-                        A safe and inclusive space for mental health awareness, education, and expert help.
-                    </p>
-                </div>
-                <div className="flex flex-col space-y-2 text-sm">
-                    <a href="/about" className="hover:underline hover:text-blue-300 transition">About Us</a>
-                    <a href="/privacy" className="hover:underline hover:text-blue-300 transition">Privacy Policy</a>
-                    <a href="/contact" className="hover:underline hover:text-blue-300 transition">Contact</a>
-                </div>
-                <div>
-                    <p className="font-semibold mb-2">Follow Us</p>
-                    <div className="flex space-x-4 text-lg">
-                        <a href="#" className="hover:text-blue-300" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
-                        <a href="#" className="hover:text-blue-300" aria-label="Twitter"><i className="fab fa-twitter"></i></a>
-                        <a href="#" className="hover:text-blue-300" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
-                        <a href="#" className="hover:text-blue-300" aria-label="LinkedIn"><i className="fab fa-linkedin-in"></i></a>
+        <footer className="bg-white text-black pt-10 pb-6 border-t border-gray-200">
+            <div className="max-w-7xl mx-auto px-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm text-center md:text-left">
+                    {/* Brand + Tagline */}
+                    <div className="flex flex-col items-center md:items-start">
+                        <h2 className="text-2xl font-bold text-black mb-2">mindConnect</h2>
+                        <p className="text-gray-600 max-w-sm">
+                            Empowering mental wellness with a safe, inclusive, and professional online space.
+                        </p>
+                    </div>
+
+                    {/* Quick Links */}
+                    <div className="flex flex-col items-center md:items-start">
+                        <h3 className="text-lg font-semibold mb-3 text-gray-800">Quick Links</h3>
+                        <ul className="space-y-2">
+                            <li><Link to="/" className="hover:text-blue-600 transition">Home</Link></li>
+                            <li><Link to="/about" className="hover:text-blue-600 transition">About Us</Link></li>
+                            <li><Link to="/contact" className="hover:text-blue-600 transition">Contact</Link></li>
+                            <li><Link to="/privacy" className="hover:text-blue-600 transition">Privacy Policy</Link></li>
+                        </ul>
+                    </div>
+
+                    {/* Services */}
+                    <div className="flex flex-col items-center md:items-start">
+                        <h3 className="text-lg font-semibold mb-3 text-gray-800">Services</h3>
+                        <ul className="space-y-2">
+                            <li>🧠 Mental Health Forums</li>
+                            <li>👩‍⚕️ Certified Counselors</li>
+                            <li>📅 Appointments</li>
+                            <li>📚 Wellness Resources</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-            <div className="text-center text-xs text-blue-300 mt-8 border-t border-blue-600 pt-4">
-                © {new Date().getFullYear()} mindConnect. All rights reserved.
+
+                {/* Bottom bar */}
+                <div className="mt-10 border-t border-gray-200 pt-4 text-center text-xs text-gray-500">
+                    © {new Date().getFullYear()} mindConnect. All rights reserved.
+                </div>
             </div>
         </footer>
     );
 };
+
+
+
+
+
+
+
+
+
+
+
 
 const App = () => {
     return (
@@ -142,3 +174,4 @@ const App = () => {
 };
 
 export default App;
+
