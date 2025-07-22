@@ -15,7 +15,7 @@ export default function Homepage() {
     return (
         <div className="flex flex-col min-h-screen">
             {/* Navigation */}
-            <nav className="bg-white/30 backdrop-blur-lg shadow-md border-b border-blue-200 px-6 py-4 sticky top-0 z-50">
+            <nav className="sticky top-0 z-50 bg-gradient-to-r from-blue-50 to-white shadow-lg border border-gray-300 px-6 py-3">
                 <div className="flex items-center justify-between">
                     <div className="flex gap-12">
                         <img src={mindconnect} alt="MindConnect Logo" className="w-60" />

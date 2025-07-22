@@ -14,6 +14,7 @@ import Homepage from './pages/Homepage';
 import SettingPage from './pages/SettingPage';
 import AboutUs from "./pages/AboutUs";
 import Adminpannel from "./pages/Adminpannel";
+import Commentpage from "./pages/Commentpage";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 
@@ -37,6 +38,7 @@ function App() {
         <Route path='/SettingPage' element={<SettingPage />} />
         <Route path="/about" element={<AboutUs/>} />
         <Route path="/Adminpannel" element={<Adminpannel/>} />
+        <Route path="/Commentpage" element={<Commentpage/>}/>
         
         
 
