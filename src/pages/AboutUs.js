@@ -80,7 +80,7 @@ const AboutUs = () => {
                 </div>
 
                 {/* What We Offer */}
-                <div className="mb-12 p-8 bg-yellow-50 rounded-2xl shadow-md border border-blue-200 animate-slide-in-up transform transition-transform duration-500 hover:scale-[1.01] hover:shadow-lg">
+                <div className="mb-12 p-8 bg-white rounded-2xl shadow-md border border-blue-200 animate-slide-in-up transform transition-transform duration-500 hover:scale-[1.01] hover:shadow-lg">
                     <h2 className="text-3xl font-bold text-blue-500 mb-4 border-b-2 border-blue-200 pb-2">What We Offer</h2>
                     <ul className="text-gray-800 text-lg space-y-3">
                         <li className="flex items-start gap-3">
