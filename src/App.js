@@ -15,7 +15,7 @@ import SettingPage from './pages/SettingPage';
 import AboutUs from "./pages/AboutUs";
 import Adminpannel from "./pages/Adminpannel";
 import Commentpage from "./pages/Commentpage";
-import "@fortawesome/fontawesome-free/css/all.min.css";
+//import "@fortawesome/fontawesome-free/css/all.min.css";
 
 
 import ForgotPassword from './pages/ForgotPassword';
@@ -39,6 +39,7 @@ function App() {
         <Route path="/about" element={<AboutUs/>} />
         <Route path="/Adminpannel" element={<Adminpannel/>} />
         <Route path="/Commentpage" element={<Commentpage/>}/>
+        <Route path="/ForgotPassword" element={<ForgotPassword/>} />
         
         
 
