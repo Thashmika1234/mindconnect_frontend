@@ -15,17 +15,19 @@ export default function Homepage() {
     return (
         <div className="flex flex-col min-h-screen">
             {/* Navigation */}
-            <nav className="bg-white/30 backdrop-blur-lg shadow-md border-b border-blue-200 px-6 py-4 sticky top-0 z-50">
+            <nav className="sticky top-0 z-50 bg-gradient-to-r from-blue-50 to-white shadow-lg border border-gray-300 px-6 py-3">
                 <div className="flex items-center justify-between">
                     <div className="flex gap-12">
                         <img src={mindconnect} alt="MindConnect Logo" className="w-60" />
                     </div>
                     <div className="flex gap-8 items-center">
                         <div className="flex items-center gap-12 text-blue-500 font-medium sm:text-base">
+                            <Link to={"/about"}>
                             <div className="relative group cursor-pointer text-xl transition">
                                 About Us
                                 <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
                             </div>
+                            </Link>
                             <div className="relative group cursor-pointer text-xl transition">
                                 Notifications
                                 <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>

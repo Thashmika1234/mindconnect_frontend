@@ -29,11 +29,14 @@ export default function RegularUserHomePage() {
               <div className="hover:text-blue-700 cursor-pointer text-xl">Notifications</div>
             </div>
 
-            <div>
-              <button className="py-2 px-6 rounded-lg bg-gradient-to-r from-blue-300 to-blue-700 text-white text-base sm:text-lg font-semibold hover:bg-gradient-to-r hover:from-blue-800 hover:to-blue-400 transition duration-300">
-                Logout
-              </button>
-            </div>
+
+            <Link to={"/HomePage"}>
+              <div>
+                <button className="py-2 px-6 rounded-lg bg-gradient-to-r from-blue-300 to-blue-700 text-white text-base sm:text-lg font-semibold hover:bg-gradient-to-r hover:from-blue-800 hover:to-blue-400 transition duration-300">
+                  Logout
+                </button>
+              </div>
+            </Link>
           </div>
         </div>
       </nav>
@@ -41,14 +44,14 @@ export default function RegularUserHomePage() {
       <div className="bg-gradient-to-r from-blue-700 to-blue-300 relative flex items-center p-3 rounded-lg shadow-xl mx-3 my-4">
         <div className="shadow-lg rounded-full bg-white border border-gray-300 w-28 h-28 p-2 flex items-center justify-center">
           <Link to={"/regularUserAccount"}>
-          <button>
-            <img src={person_avater} alt="Regular user" className="w-24 h-24 rounded-full" />
-          </button>
+            <button>
+              <img src={person_avater} alt="Regular user" className="w-24 h-24 rounded-full" />
+            </button>
           </Link>
         </div>
 
         <div className="ml-6">
-          <h1 className="text-white text-2xl font-semibold pb-4">Mr. abcd</h1>
+          <h1 className="text-white text-2xl font-semibold pb-4">Mr. abcde</h1>
           <p className="text-white text-sm font-semibold bg-green-500 rounded-full px-3 py-1 inline-block shadow-md">
             Regular user
           </p>
@@ -67,16 +70,16 @@ export default function RegularUserHomePage() {
         </div>
       </div>
 
-      
+
       <Link to={"/posting"}>
-      <div className="flex items-center justify-center p-3 rounded-lg shadow-xl bg-white mx-3 my-4">
-        
-        
-        <button className="w-1/4 text-white bg-gradient-to-r from-blue-500 to-blue-700 font-semibold py-3 px-4 rounded-lg mx-1 mb-2 hover:from-blue-300 hover:to-blue-500 shadow-md transition-all sm:text-base md:text-lg">
-          What's on Your Mind?
-        </button>
-        
-      </div>
+        <div className="flex items-center justify-center p-3 rounded-lg shadow-xl bg-white mx-3 my-4">
+
+
+          <button className="w-1/4 text-white bg-gradient-to-r from-blue-500 to-blue-700 font-semibold py-3 px-4 rounded-lg mx-1 mb-2 hover:from-blue-300 hover:to-blue-500 shadow-md transition-all sm:text-base md:text-lg">
+            What's on Your Mind?
+          </button>
+
+        </div>
       </Link>
     </div>
   );

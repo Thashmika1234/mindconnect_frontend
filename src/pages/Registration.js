@@ -1,44 +1,49 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import InputComponent from "../components/loginSignupComponents/InputComponent";
-//import user_icon from '../components/assests/person-295.png';
 import email_icon from '../components/assests/mail-5924.png';
 import password_icon from '../components/assests/login-password-11924.png';
 import option_icon from '../components/assests/option.png';
 import axios from "axios";
 
 const Registration = () => {
-    //const [username, setusername] = useState("");
     const [email, setemail] = useState("");
     const [usertype, setusertype] = useState("");
     const [password, setpassword] = useState("");
     const [confirmpassword, setconfirmpassword] = useState("");
     const [error, setError] = useState("");
+    const [document, setDocument] = useState(null);
 
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setError(""); // Clear any previous errors
+        setError("");
 
-        // Validate required fields
         if (!email || !usertype || !password || !confirmpassword) {
             setError("Please fill in all required fields.");
             return;
         }
 
-        // Validate password match
         if (password !== confirmpassword) {
             setError("Passwords do not match.");
             return;
         }
 
+        if ((usertype === "doctor" || usertype === "counsellor") && !document) {
+            setError("Please upload a verification document.");
+            return;
+        }
+
         const formData = new FormData();
-        //formData.append("username", username);
         formData.append("email", email);
         formData.append("usertype", usertype);
         formData.append("password", password);
         formData.append("confirmpassword", confirmpassword);
+
+        if ((usertype === "doctor" || usertype === "counsellor") && document) {
+            formData.append("verification_document", document);
+        }
 
         try {
             const response = await axios.post("http://localhost/backend/login.php", formData);
@@ -71,7 +76,6 @@ const Registration = () => {
                 )}
 
                 <form className="flex flex-col gap-4 sm:gap-6" onSubmit={handleSubmit}>
-               
                     <InputComponent
                         icon={email_icon}
                         placeholder="Email"
@@ -100,6 +104,25 @@ const Registration = () => {
                             <option value="counsellor">Counsellor</option>
                         </select>
                     </div>
+
+                    {/* Conditional Document Upload */}
+                    {(usertype === "doctor" || usertype === "counsellor") && (
+                        <div className="border-2 border-dashed border-blue-400 rounded-lg p-4 bg-blue-50 text-center">
+                            <label htmlFor="document" className="block text-blue-700 font-semibold mb-2">
+                                Upload NIC and Proof Document (PDF)
+                            </label>
+                            <input
+                                type="file"
+                                id="document"
+                                accept="application/pdf"
+                                onChange={(e) => setDocument(e.target.files[0])}
+                                className="w-full text-sm text-gray-700"
+                            />
+                            {document && (
+                                <p className="mt-2 text-green-600">Selected: {document.name}</p>
+                            )}
+                        </div>
+                    )}
 
                     <InputComponent
                         icon={password_icon}
