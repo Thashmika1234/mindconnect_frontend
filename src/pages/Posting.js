@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const fonts = [
-  "Arial", "Verdana", "Tahoma", "Georgia", "Times New Roman",
-  "Courier New", "Lucida Console", "Trebuchet MS", "Impact", "Comic Sans MS"
+  "Arial","Verdana","Tahoma","Georgia","Times New Roman",
+  "Courier New","Lucida Console","Trebuchet MS","Impact","Comic Sans MS"
 ];
 
 const colors = [
-  "#FFB6C1", "#ADD8E6", "#90EE90", "#FFFACD", "#FFA07A",
-  "#E6E6FA", "#D3D3D3", "#F08080", "#AFEEEE", "#E0FFFF"
+  "#FFB6C1","#ADD8E6","#90EE90","#FFFACD","#FFA07A",
+  "#E6E6FA","#D3D3D3","#F08080","#AFEEEE","#E0FFFF"
 ];
 
 const Posting = () => {
@@ -16,29 +16,59 @@ const Posting = () => {
   const [font, setFont] = useState(fonts[0]);
   const [bgColor, setBgColor] = useState(colors[0]);
   const [fontSize, setFontSize] = useState(30);
+  const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
 
-  const increaseFontSize = () => setFontSize((prev) => Math.min(prev + 4, 72));
-  const decreaseFontSize = () => setFontSize((prev) => Math.max(prev - 4, 16));
+  const increaseFontSize = () => setFontSize((p) => Math.min(p + 4, 72));
+  const decreaseFontSize = () => setFontSize((p) => Math.max(p - 4, 16));
 
-  const handlePostSubmit = () => {
-    if (post.trim()) {
-      const newPost = {
-        id: Date.now(),
-        content: post,
-        font,
-        bgColor,
-        fontSize,
-      };
-      const savedPosts = JSON.parse(localStorage.getItem("posts")) || [];
-      const updatedPosts = [newPost, ...savedPosts];
-      localStorage.setItem("posts", JSON.stringify(updatedPosts));
-      setPost("");
-
-      // Navigate to homepage after successful post
-      navigate("/regularUserAccount"); // Replace "/" with your homepage route if different
-    } else {
+  const handlePostSubmit = async () => {
+    const uid = localStorage.getItem("user_id"); // set during login
+    if (!uid || Number(uid) <= 0) {
+      alert("You must be logged in. Missing user_id.");
+      return;
+    }
+    if (!post.trim()) {
       alert("Please write something before posting.");
+      return;
+    }
+
+    const newPost = {
+      user_id: Number(uid),
+      title: "Untitled",
+      content: post,
+      category: "General",
+    };
+
+    setSubmitting(true);
+    try {
+      const resp = await fetch("http://localhost/mindConnect/services/create_post.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newPost),
+      });
+
+      const text = await resp.text(); // read raw text first
+      let result;
+      try {
+        result = JSON.parse(text);
+      } catch (e) {
+        console.error("Server did not return JSON. Raw response:", text);
+        alert("Server returned an invalid response. Check console for details.");
+        return;
+      }
+
+      if (resp.ok && result?.status === "success") {
+        setPost("");
+        navigate("/regularUserAccount");
+      } else {
+        alert(result?.message || "Failed to create post.");
+      }
+    } catch (err) {
+      console.error("Network/Fetch error:", err);
+      alert("Something went wrong. Check your backend URL/CORS.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -58,15 +88,9 @@ const Posting = () => {
         <div className="flex flex-wrap gap-6 mb-6 items-center justify-between">
           <div>
             <p className="mb-1 font-medium">Font</p>
-            <select
-              className="border p-2 rounded-lg"
-              value={font}
-              onChange={(e) => setFont(e.target.value)}
-            >
+            <select className="border p-2 rounded-lg" value={font} onChange={(e) => setFont(e.target.value)}>
               {fonts.map((f) => (
-                <option key={f} value={f} style={{ fontFamily: f }}>
-                  {f}
-                </option>
+                <option key={f} value={f} style={{ fontFamily: f }}>{f}</option>
               ))}
             </select>
           </div>
@@ -74,19 +98,9 @@ const Posting = () => {
           <div>
             <p className="mb-1 font-medium">Font Size</p>
             <div className="flex items-center gap-2">
-              <button
-                onClick={decreaseFontSize}
-                className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 text-xl font-bold"
-              >
-                -
-              </button>
+              <button onClick={decreaseFontSize} className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 text-xl font-bold">-</button>
               <span className="text-lg font-semibold">{fontSize}px</span>
-              <button
-                onClick={increaseFontSize}
-                className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 text-xl font-bold"
-              >
-                +
-              </button>
+              <button onClick={increaseFontSize} className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 text-xl font-bold">+</button>
             </div>
           </div>
 
@@ -98,11 +112,8 @@ const Posting = () => {
                   key={color}
                   onClick={() => setBgColor(color)}
                   className="w-8 h-8 rounded-lg cursor-pointer border-2"
-                  style={{
-                    backgroundColor: color,
-                    borderColor: bgColor === color ? "#000" : "transparent",
-                  }}
-                ></div>
+                  style={{ backgroundColor: color, borderColor: bgColor === color ? "#000" : "transparent" }}
+                />
               ))}
             </div>
           </div>
@@ -110,9 +121,12 @@ const Posting = () => {
 
         <button
           onClick={handlePostSubmit}
-          className="w-full py-3 bg-blue-600 text-white rounded-lg text-xl font-semibold hover:bg-blue-700 transition"
+          disabled={submitting}
+          className={`w-full py-3 rounded-lg text-xl font-semibold transition ${
+            submitting ? "bg-gray-300 text-gray-600 cursor-not-allowed" : "bg-blue-600 text-white hover:bg-blue-700"
+          }`}
         >
-          Post Anonymously
+          {submitting ? "Posting..." : "Post Anonymously"}
         </button>
       </div>
     </div>

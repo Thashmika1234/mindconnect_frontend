@@ -29,7 +29,7 @@ export default function Homepage() {
                             </div>
                             </Link>
                             <div className="relative group cursor-pointer text-xl transition">
-                                Notifications
+                                
                                 <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
                             </div>
                         </div>
@@ -98,9 +98,11 @@ export default function Homepage() {
                             <p className="text-gray-600 mb-4 flex-grow">
                                 Post your thoughts anonymously and get responses from professionals and others.
                             </p>
+                            <Link to={"/login"}>
                             <button className="mt-auto py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600">
                                 Start Talking
                             </button>
+                            </Link>
                         </div>
 
                         {/* Card 2 */}
@@ -113,9 +115,11 @@ export default function Homepage() {
                             <p className="text-gray-600 mb-4 flex-grow">
                                 Browse verified counselors and doctors. Book sessions online at your convenience.
                             </p>
+                            <Link to={"/login"}>
                             <button className="mt-auto py-2 px-4 bg-green-500 text-white rounded hover:bg-green-600">
                                 Explore Now
                             </button>
+                            </Link>
                         </div>
 
                         {/* Card 3 */}
@@ -128,9 +132,11 @@ export default function Homepage() {
                             <p className="text-gray-600 mb-4 flex-grow">
                                 Read posts and guides from experts about anxiety, depression, stress, and more.
                             </p>
+                            <Link to={"/login"}>
                             <button className="mt-auto py-2 px-4 bg-purple-500 text-white rounded hover:bg-purple-600">
                                 Read Articles
                             </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

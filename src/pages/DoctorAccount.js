@@ -5,9 +5,15 @@ import appointment_icon from "../components/assests/appointment_icon.png";
 import message_icon from "../components/assests/message_icon.png";
 import settings_icon from "../components/assests/settings_icon.png";
 import Doctor_post from "../components/loginSignupComponents/doctor_post";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function DoctorAccount() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    navigate("/homepage");
+  };
+
   return (
     <div className="w-full min-h-screen bg-white">
       {/* Navbar */}
@@ -26,7 +32,10 @@ export default function DoctorAccount() {
           </div>
 
           {/* Logout Button */}
-          <button className="mt-3 md:mt-0 py-2 px-6 rounded-lg bg-gradient-to-r from-blue-300 to-blue-700 text-white font-semibold hover:from-blue-800 hover:to-blue-400 transition duration-300">
+          <button
+            onClick={handleLogout}
+            className="mt-3 md:mt-0 py-2 px-6 rounded-lg bg-gradient-to-r from-blue-300 to-blue-700 text-white font-semibold hover:from-blue-800 hover:to-blue-400 transition duration-300"
+          >
             Logout
           </button>
         </div>

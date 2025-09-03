@@ -32,11 +32,11 @@ const Header = () => {
                     <div className="flex gap-8 text-blue-400 font-medium">
                         <Link to="/" className="hover:text-blue-700 text-lg transition-colors">Home</Link>
                         <Link to="/about" className="hover:text-blue-700 text-lg transition-colors">About Us</Link>
-                        <Link to="/notifications" className="hover:text-blue-700 text-lg transition-colors">Notifications</Link>
+                       
                     </div>
                     <Link to="/homepage">
                         <button className="py-2 px-5 rounded-lg bg-gradient-to-r from-blue-300 to-blue-700 text-white font-semibold hover:from-blue-800 hover:to-blue-500 transition-colors">
-                            Logout
+                            Login
                         </button>
                     </Link>
                 </div>

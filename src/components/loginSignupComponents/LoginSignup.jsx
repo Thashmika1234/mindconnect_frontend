@@ -23,12 +23,13 @@ export const LoginSignup = () => {
       formData.append('password', password);
 
       const response = await axios.post(
-        'http://localhost/login.php',
+        'http://localhost/mindConnect/api/login.php',
         formData
       );
 
       if (response.data.success) {
         setError('');
+        localStorage.setItem('user_id',response.data.user_id);
         navigate('/regularUserAccount');
       } else {
         setError(response.data.message || 'Invalid email or password.');

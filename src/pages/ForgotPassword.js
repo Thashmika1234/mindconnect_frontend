@@ -18,7 +18,7 @@ const ForgotPassword = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost/send_otp.php', { email });
+      const response = await axios.post('http://localhost/mindConnect/api/send_otp.php', { email });
       if (response.data.success) {
         setOtpSent(true);
         setMessage('OTP has been sent to your email.');
@@ -40,7 +40,7 @@ const ForgotPassword = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost/verify_otp.php', { email, otp });
+      const response = await axios.post('http://localhost/mindConnect/api/verify_otp.php', { email, otp });
       if (response.data.success) {
         setOtpVerified(true);
         setMessage('OTP verified. Please enter your new password.');
@@ -66,7 +66,7 @@ const ForgotPassword = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost/reset_password.php', {
+      const response = await axios.post('http://localhost/mindConnect/api/reset_password.php', {
         email,
         password: newPassword,
       });
