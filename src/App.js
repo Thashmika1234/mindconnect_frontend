@@ -16,9 +16,14 @@ import AboutUs from "./pages/AboutUs";
 import Adminpannel from "./pages/Adminpannel";
 import Commentpage from "./pages/Commentpage";
 //import "@fortawesome/fontawesome-free/css/all.min.css";
+import UserNotifications from './pages/UserNotifications';
+import DoctorNotifications from './pages/DoctorNotifications';
+
 
 
 import ForgotPassword from './pages/ForgotPassword';
+
+import CounsellorNotification from './pages/CounsellorNotification';
 
 function App() {
   return (
@@ -36,12 +41,16 @@ function App() {
         <Route path='/posting' element={<Posting />} />
         <Route path='/' element={<Homepage />} />
         <Route path='/SettingPage' element={<SettingPage />} />
-        <Route path="/about" element={<AboutUs/>} />
-        <Route path="/Adminpannel" element={<Adminpannel/>} />
-        <Route path="/Commentpage" element={<Commentpage/>}/>
-        <Route path="/ForgotPassword" element={<ForgotPassword/>} />
-        
-        
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/Adminpannel" element={<Adminpannel />} />
+        <Route path="/Commentpage" element={<Commentpage />} />
+        <Route path="/ForgotPassword" element={<ForgotPassword />} />
+
+
+
+        <Route path="/usernotification" element={<UserNotifications />} />
+        <Route path="/doctornotification" element={< DoctorNotifications />} />
+        <Route path="/counsellornotification" element={<CounsellorNotification />} />
 
 
 
