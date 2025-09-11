@@ -18,12 +18,11 @@ import Commentpage from "./pages/Commentpage";
 //import "@fortawesome/fontawesome-free/css/all.min.css";
 import UserNotifications from './pages/UserNotifications';
 import DoctorNotifications from './pages/DoctorNotifications';
-
-
-
+import Appointment from './pages/Appointments';
+import Appointments from './pages/Appointments';
 import ForgotPassword from './pages/ForgotPassword';
-
 import CounsellorNotification from './pages/CounsellorNotification';
+import Doctoravailabilityupdate from './pages/Doctoravailabilityupdate';
 
 function App() {
   return (
@@ -45,20 +44,12 @@ function App() {
         <Route path="/Adminpannel" element={<Adminpannel />} />
         <Route path="/Commentpage" element={<Commentpage />} />
         <Route path="/ForgotPassword" element={<ForgotPassword />} />
-
-
-
         <Route path="/usernotification" element={<UserNotifications />} />
         <Route path="/doctornotification" element={< DoctorNotifications />} />
         <Route path="/counsellornotification" element={<CounsellorNotification />} />
-
-
-
-
-
-
-
-
+        <Route path="/appointment" element={<Appointment/>} />
+        <Route path="/appointments" element={<Appointments/>}/>
+        <Route path="/Doctoravailabilityupdate" element={<Doctoravailabilityupdate/>}/>
 
 
 
