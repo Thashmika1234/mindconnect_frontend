@@ -1,5 +1,4 @@
 import React from "react";
-import option_icon from "../components/assests/option.png";
 import mindconnect from "../components/assests/mindconnect_logo.png";
 import counsellor_avatar from "../components/assests/counsellor_avater.avif";
 import appointment_icon from "../components/assests/appointment_icon.png";
@@ -13,41 +12,46 @@ const CounsellorHomePage = () => {
     const tocounselloraccount = () => {
         navigate("/counselloraccount");
     };
-
-
-
+    const handleLogout = () => {
+     localStorage.clear();
+     navigate("/");
+   };
+   const tosetting = () => {
+    navigate("/SettingPage");
+  };
 
     return (
         <div>
-            <nav className="bg-gradient-to-r from-blue-50 to-white shadow-lg border border-gray-300 px-6 py-3">
-                <div className="flex items-center justify-between">
-                    {/* Left Section: Icons */}
-                    <div className="flex gap-12">
-                        <Link to={"/login"}>
-                            <img src={mindconnect} alt="MindConnect Logo" className="w-60" />
-                        </Link>
+        <nav className="bg-gradient-to-r from-blue-50 to-white shadow-lg border border-gray-300 px-6 py-3">
+        <div className="flex items-center justify-between">
+          <div className="flex gap-12">
+            <Link to={"/doctorhomepage"}>
+              <img src={mindconnect} alt="MindConnect Logo" className="w-60" />
+            </Link>
+          </div>
 
-                    </div>
+          <div className="flex gap-8">
+            <div className="flex items-center gap-12 ml-auto text-blue-400 sm:text-base">
+              <Link to={"/counsellorHomePage"}>
+                <div className="hover:text-blue-700 cursor-pointer text-2xl">Home</div>
+              </Link>
+              <Link to={"/about"}>
+                <div className="hover:text-blue-700 cursor-pointer text-2xl">About Us</div>
+              </Link>
+              <Link to={"/counsellornotification"}>
+              <div className="hover:text-blue-700 cursor-pointer text-2xl">Notifications</div>
+              </Link>
+            </div>
 
-                    <div className="flex gap-8">
-                        {/* Middle Section Links */}
-                        <div className="flex items-center gap-12 ml-auto text-blue-400 sm:text-base">
-                            <div className="hover:text-blue-700 cursor-pointer text-xl">Home</div>
-                            <div className="hover:text-blue-700 cursor-pointer text-xl">About Us</div>
-                            <div className="hover:text-blue-700 cursor-pointer text-xl">Notifications</div>
-                        </div>
-
-                        {/* Logout Button */}
-                        <div>
-                            <button
-                                className="py-2 px-6 rounded-lg bg-gradient-to-r from-blue-300 to-blue-700 text-white text-base sm:text-lg font-semibold hover:bg-gradient-to-r hover:from-blue-800 hover:to-blue-400 transition duration-300"
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+            <div>
+                <button className="py-2 px-6 rounded-lg bg-gradient-to-r from-blue-300 to-blue-700 text-white text-lg sm:text-xl font-semibold hover:bg-gradient-to-r hover:from-blue-800 hover:to-blue-400 transition duration-300" 
+                onClick={handleLogout}>
+                  Logout
+                </button>
+            </div>
+          </div>
+        </div>
+      </nav>
 
             <div className="bg-gradient-to-r from-blue-700 to-blue-300 relative flex items-center p-3 rounded-lg shadow-xl mx-3 my-4">
                 {/* Circle Div */}
@@ -68,16 +72,17 @@ const CounsellorHomePage = () => {
 
                 {/* Icon Div */}
                 <div className="absolute top-3 right-3 flex gap-9">
-                    <button>
-                        <img src={appointment_icon} alt="Appointment Icon" className="w-9" />
-                    </button>
-                    <button>
-                        <img src={message_icon} alt="Message Icon" className="w-9" />
-                    </button>
-                    <button>
-                        <img src={settings_icon} alt="Settings Icon" className="w-9" />
-                    </button>
-                </div>
+          <button onClick={() => navigate("/doctoravailabilityupdate")}>
+            <img src={appointment_icon} alt="Appointment Icon" className="w-9" />
+          </button>
+          <button onClick={() => navigate("/counsellornotification")}>
+            <img src={message_icon} alt="Message Icon" className="w-9" />
+          </button>
+          <button onClick={tosetting}>
+            <img src={settings_icon} alt="Settings Icon" className="w-9" />
+          </button>
+        </div>
+                
             </div>
 
             {/* Button Section */}

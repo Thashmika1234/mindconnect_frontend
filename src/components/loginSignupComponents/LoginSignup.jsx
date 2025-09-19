@@ -30,7 +30,16 @@ export const LoginSignup = () => {
       if (response.data.success) {
         setError('');
         localStorage.setItem('user_id',response.data.user_id);
-        navigate('/regularUserAccount');
+        const usertype = response.data.user_type;
+        localStorage.setItem('user_type',usertype);
+        if(usertype === "normal") navigate('/regularUserHomePage');
+        else if(usertype === "doctor") navigate('/doctorhomepage');
+        else if(usertype === "counsellor") navigate('/doctorhomepage');
+        else if(usertype === "admin") navigate('/Adminpannel');
+        else{
+          navigate('/');
+        }
+        
       } else {
         setError(response.data.message || 'Invalid email or password.');
       }

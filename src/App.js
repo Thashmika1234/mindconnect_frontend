@@ -49,9 +49,7 @@ function App() {
         <Route path="/counsellornotification" element={<CounsellorNotification />} />
         <Route path="/appointment" element={<Appointment/>} />
         <Route path="/appointments" element={<Appointments/>}/>
-        <Route path="/Doctoravailabilityupdate" element={<Doctoravailabilityupdate/>}/>
-
-
+        <Route path="/doctoravailabilityupdate" element={<Doctoravailabilityupdate/>}/>
 
       </Routes>
     </BrowserRouter>

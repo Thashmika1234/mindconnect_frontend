@@ -9,6 +9,7 @@ import axios from "axios";
 
 const Registration = () => {
     const [username, setUsername] = useState("");
+    const [displayname, setDisplayname] = useState(""); // NEW state
     const [email, setEmail] = useState("");
     const [usertype, setUsertype] = useState("");
     const [password, setPassword] = useState("");
@@ -32,8 +33,8 @@ const Registration = () => {
             return;
         }
 
-        if ((usertype === "doctor" || usertype === "counsellor") && !document) {
-            setError("Please upload a verification document.");
+        if ((usertype === "doctor" || usertype === "counsellor") && (!document || !displayname)) {
+            setError("Please upload a verification document and enter your display name.");
             return;
         }
 
@@ -43,6 +44,10 @@ const Registration = () => {
         formData.append("usertype", usertype);
         formData.append("password", password);
         formData.append("confirmpassword", confirmpassword);
+
+        if (displayname) {
+            formData.append("displayname", displayname); // ✅ Send displayname
+        }
 
         if (document) {
             formData.append("verification_document", document);
@@ -111,6 +116,19 @@ const Registration = () => {
                         </select>
                     </div>
 
+                    {/* ✅ Show Displayname if doctor/counsellor */}
+                    {(usertype === "doctor" || usertype === "counsellor") && (
+                        <input
+                            type="text"
+                            placeholder="Display Name"
+                            className="w-full py-3 px-4 rounded-lg border bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            value={displayname}
+                            onChange={(e) => setDisplayname(e.target.value)}
+                            required
+                        />
+                    )}
+
+                    {/* ✅ Show document upload if doctor/counsellor */}
                     {(usertype === "doctor" || usertype === "counsellor") && (
                         <div className="border-2 border-dashed border-blue-400 rounded-lg p-4 bg-blue-50 text-center">
                             <label htmlFor="document" className="block text-blue-700 font-semibold mb-2">

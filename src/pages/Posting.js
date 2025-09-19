@@ -17,13 +17,26 @@ const Posting = () => {
   const [bgColor, setBgColor] = useState(colors[0]);
   const [fontSize, setFontSize] = useState(30);
   const [submitting, setSubmitting] = useState(false);
+  const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+
   const navigate = useNavigate();
 
   const increaseFontSize = () => setFontSize((p) => Math.min(p + 4, 72));
   const decreaseFontSize = () => setFontSize((p) => Math.max(p - 4, 16));
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImageFile(file);
+      setImagePreview(URL.createObjectURL(file));
+    }
+  };
+
   const handlePostSubmit = async () => {
-    const uid = localStorage.getItem("user_id"); // set during login
+    const uid = localStorage.getItem("user_id");
+    const usertype = localStorage.getItem("user_type"); // 👈 get user_type
+
     if (!uid || Number(uid) <= 0) {
       alert("You must be logged in. Missing user_id.");
       return;
@@ -33,22 +46,32 @@ const Posting = () => {
       return;
     }
 
-    const newPost = {
-      user_id: Number(uid),
-      title: "Untitled",
-      content: post,
-      category: "General",
-    };
+    // 👇 Set category based on user type
+    let category = "General";
+    if (usertype === "doctor" || usertype === "counsellor") {
+      category = "Professional";
+    }
+
+    const formData = new FormData();
+    formData.append("user_id", Number(uid));
+    formData.append("title", "Untitled");
+    formData.append("content", post);
+    formData.append("category", category);
+    formData.append("font", font);
+    formData.append("bg_color", bgColor);
+    formData.append("font_size", fontSize);
+    if (imageFile) {
+      formData.append("image", imageFile);
+    }
 
     setSubmitting(true);
     try {
       const resp = await fetch("http://localhost/mindConnect/services/create_post.php", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newPost),
+        body: formData
       });
 
-      const text = await resp.text(); // read raw text first
+      const text = await resp.text();
       let result;
       try {
         result = JSON.parse(text);
@@ -60,7 +83,14 @@ const Posting = () => {
 
       if (resp.ok && result?.status === "success") {
         setPost("");
-        navigate("/regularUserAccount");
+        setImageFile(null);
+        setImagePreview(null);
+
+        // 👇 Redirect according to user type
+        if (usertype === "normal") navigate("/regularUserHomePage");
+        else if (usertype === "doctor") navigate("/doctorhomepage");
+        else if (usertype === "counsellor") navigate("/doctorhomepage");
+        else navigate("/"); // fallback
       } else {
         alert(result?.message || "Failed to create post.");
       }
@@ -77,6 +107,7 @@ const Posting = () => {
       <div className="bg-white shadow-2xl rounded-xl p-8 w-full max-w-3xl">
         <h2 className="text-3xl font-bold text-center text-blue-700 mb-6">Express Your Thoughts</h2>
 
+        {/* Text Area */}
         <textarea
           className="w-full h-72 border border-gray-300 rounded-lg p-4 mb-6 resize-none"
           style={{ fontFamily: font, backgroundColor: bgColor, fontSize: `${fontSize}px` }}
@@ -85,6 +116,25 @@ const Posting = () => {
           onChange={(e) => setPost(e.target.value)}
         />
 
+        {/* Image Upload */}
+        <div className="mb-6">
+          <label className="block mb-2 font-medium text-gray-700">Attach Image (optional)</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            className="border p-2 rounded-lg w-full"
+          />
+          {imagePreview && (
+            <img
+              src={imagePreview}
+              alt="Preview"
+              className="mt-4 max-h-60 rounded-lg shadow-md"
+            />
+          )}
+        </div>
+
+        {/* Font, Size, Background */}
         <div className="flex flex-wrap gap-6 mb-6 items-center justify-between">
           <div>
             <p className="mb-1 font-medium">Font</p>
@@ -126,7 +176,7 @@ const Posting = () => {
             submitting ? "bg-gray-300 text-gray-600 cursor-not-allowed" : "bg-blue-600 text-white hover:bg-blue-700"
           }`}
         >
-          {submitting ? "Posting..." : "Post Anonymously"}
+          {submitting ? "Posting..." : "Post"}
         </button>
       </div>
     </div>
