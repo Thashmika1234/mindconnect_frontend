@@ -40,8 +40,14 @@ const DoctorPostCard = ({ post, profilePic, displayName }) => {
 
   return (
     <div className="flex justify-center w-full pb-4">
-      <div className="relative bg-blue-50 rounded-2xl shadow-lg flex flex-col items-center justify-start text-black text-xl font-semibold border border-gray-300 w-full md:max-w-2xl">
-
+      <div
+        className="relative rounded-2xl shadow-lg flex flex-col items-center justify-start text-black text-xl font-semibold border border-gray-300 w-full md:max-w-2xl"
+        style={{
+          backgroundColor: post.bg_color || "#ffffff",
+          fontFamily: post.font || "Arial",
+          fontSize: post.font_size ? `${post.font_size}px` : "16px",
+        }}
+      >
         {/* Avatar + Name */}
         <div>
           <div className="absolute top-3 left-3 flex items-center space-x-3">
@@ -64,7 +70,7 @@ const DoctorPostCard = ({ post, profilePic, displayName }) => {
 
           {/* Post Content */}
           <div className="p-4 w-full mt-24 text-left">
-            <p className="text-gray-800 text-sm font-normal leading-relaxed text-left">
+            <p className="text-gray-800 leading-relaxed text-left">
               {post.content}
             </p>
           </div>
@@ -84,25 +90,24 @@ const DoctorPostCard = ({ post, profilePic, displayName }) => {
         {/* Like & Comment Buttons */}
         <div className="flex justify-between px-6 py-3 w-full">
           <button
-  onClick={handleLike}
-  className={`border rounded-lg px-6 py-2 text-sm transition ${
-    liked
-      ? "bg-blue-200 border-blue-400 text-blue-700"
-      : "bg-white border-gray-300 text-blue-600 hover:bg-blue-100"
-  }`}
->
-  👍 Like{totalLikes > 0 ? ` · ${totalLikes}` : ""}
-</button>
+            onClick={handleLike}
+            className={`border rounded-lg px-6 py-2 text-sm transition ${
+              liked
+                ? "bg-blue-200 border-blue-400 text-blue-700"
+                : "bg-white border-gray-300 text-blue-600 hover:bg-blue-100"
+            }`}
+          >
+            👍 Like{totalLikes > 0 ? ` · ${totalLikes}` : ""}
+          </button>
 
           <Link
-  to={"/Commentpage"}
-  state={{ post, profilePic, displayName }}
->
-  <button className="bg-white border border-gray-300 rounded-lg px-6 py-2 text-sm text-blue-600 hover:bg-blue-100">
-    💬 Comment
-  </button>
-</Link>
-
+            to={"/Commentpage"}
+            state={{ post, profilePic, displayName }}
+          >
+            <button className="bg-white border border-gray-300 rounded-lg px-6 py-2 text-sm text-blue-600 hover:bg-blue-100">
+              💬 Comment
+            </button>
+          </Link>
         </div>
       </div>
     </div>

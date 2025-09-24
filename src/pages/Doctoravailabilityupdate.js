@@ -5,7 +5,10 @@ import "react-calendar/dist/Calendar.css";
 const DoctorAvailability = () => {
   const [date, setDate] = useState(new Date());
   const [availabilities, setAvailabilities] = useState([]);
-  const doctorId = 1; // TODO: Replace with logged-in doctor's ID
+  const [places, setPlaces] = useState(["City Hospital", "Downtown Clinic", "Online Consultation"]);
+  const [newPlace, setNewPlace] = useState("");
+
+  const doctorId = localStorage.getItem("doctor_id") || 1; // replace fallback later
 
   const times = [
     "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM",
@@ -31,7 +34,7 @@ const DoctorAvailability = () => {
       }
     };
     fetchAvailability();
-  }, [date]);
+  }, [date, doctorId]);
 
   // Toggle times
   const toggleTime = (index, time) => {
@@ -59,6 +62,14 @@ const DoctorAvailability = () => {
   // Add new availability block
   const addAvailability = () => {
     setAvailabilities([...availabilities, { place: "", times: [] }]);
+  };
+
+  // Add new place
+  const handleAddPlace = () => {
+    if (newPlace.trim() !== "" && !places.includes(newPlace.trim())) {
+      setPlaces([...places, newPlace.trim()]);
+      setNewPlace("");
+    }
   };
 
   // Save availability
@@ -111,6 +122,23 @@ const DoctorAvailability = () => {
             Set Availability
           </h3>
 
+          {/* Add Place */}
+          <div className="mb-5 flex gap-3">
+            <input
+              type="text"
+              value={newPlace}
+              onChange={(e) => setNewPlace(e.target.value)}
+              placeholder="Enter new place"
+              className="flex-1 p-3 border border-gray-300 rounded-lg"
+            />
+            <button
+              onClick={handleAddPlace}
+              className="bg-green-500 hover:bg-green-600 text-white font-bold px-4 rounded-lg"
+            >
+              Add
+            </button>
+          </div>
+
           {availabilities.map((block, index) => (
             <div key={index} className="mb-6 p-4 border border-green-300 rounded-xl">
               <label className="block text-green-900 font-semibold mb-2">
@@ -122,9 +150,11 @@ const DoctorAvailability = () => {
                 className="w-full p-3 border border-gray-300 rounded-lg mb-4"
               >
                 <option value="">-- Select Place --</option>
-                <option value="City Hospital">City Hospital</option>
-                <option value="Downtown Clinic">Downtown Clinic</option>
-                <option value="Online Consultation">Online Consultation</option>
+                {places.map((place, idx) => (
+                  <option key={idx} value={place}>
+                    {place}
+                  </option>
+                ))}
               </select>
 
               <h4 className="text-lg font-semibold text-green-900 mb-3">

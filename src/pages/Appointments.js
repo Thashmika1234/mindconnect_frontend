@@ -9,7 +9,7 @@ export default function Appointment() {
 
   const doctorId = 1; // TODO: Replace with logged-in doctor's ID
 
-  // Fetch available slots from backend whenever date changes
+  // Fetch available slots whenever date changes
   useEffect(() => {
     const fetchSlots = async () => {
       const formattedDate = date.toISOString().split("T")[0];
@@ -49,7 +49,7 @@ export default function Appointment() {
           body: JSON.stringify({
             doctor_id: doctorId,
             date: formattedDate,
-            slot: selectedSlot,
+            slot: selectedSlot.time,
           }),
         }
       );
@@ -59,7 +59,7 @@ export default function Appointment() {
         alert("Appointment booked successfully!");
         setSelectedSlot(null);
         // Refresh slots after booking
-        setSlots(slots.filter(s => s !== selectedSlot));
+        setSlots(slots.filter((s) => s.time !== selectedSlot.time));
       } else {
         alert("Error: " + result.message);
       }
@@ -121,44 +121,6 @@ export default function Appointment() {
           </button>
         </div>
       </div>
-
-      {/* Custom Calendar CSS */}
-      <style>
-        {`
-          .react-calendar {
-            border: none;
-            width: 100%;
-            height: 100%;
-          }
-          .react-calendar__navigation__label {
-            font-size: 1.75rem;
-            font-weight: bold;
-            color: #004080;
-          }
-          .react-calendar__tile {
-            font-size: 1.25rem;
-            font-weight: bold;
-            padding: 0.75rem;
-            margin: 0.25rem;
-          }
-          .react-calendar__tile--active {
-            background: #004080 !important;
-            color: white !important;
-          }
-          .react-calendar__tile--now {
-            background: #cce0ff !important;
-            border-radius: 0.5rem;
-          }
-          .react-calendar__tile:hover {
-            background: #80b3ff !important;
-            color: white;
-            border-radius: 0.5rem;
-          }
-          .react-calendar__month-view__days__row {
-            height: 60px;
-          }
-        `}
-      </style>
     </div>
   );
 }
