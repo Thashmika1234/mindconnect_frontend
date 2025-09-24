@@ -23,6 +23,7 @@ import Appointments from './pages/Appointments';
 import ForgotPassword from './pages/ForgotPassword';
 import CounsellorNotification from './pages/CounsellorNotification';
 import Doctoravailabilityupdate from './pages/Doctoravailabilityupdate';
+import RegularUserToDoctor from'./pages/RegularUserToDoctor';
 
 function App() {
   return (
@@ -50,6 +51,8 @@ function App() {
         <Route path="/appointment" element={<Appointment/>} />
         <Route path="/appointments" element={<Appointments/>}/>
         <Route path="/doctoravailabilityupdate" element={<Doctoravailabilityupdate/>}/>
+        <Route path="/RegularUserToDoctor" element={<RegularUserToDoctor/>}/>
+      
 
       </Routes>
     </BrowserRouter>
